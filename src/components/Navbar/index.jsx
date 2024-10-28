@@ -7,11 +7,11 @@ export function Navbar() {
     <Nav>
         <Logo>Online Shop</Logo>
         <Menu>
-        <MenuItem><Link to="/" style={{ color: 'white' }}>Početna</Link></MenuItem>
-        <MenuItem><Link to="/products" style={{ color: 'white' }}>Proizvodi</Link></MenuItem>
-            <MenuItem>O nama</MenuItem>
+            <MenuItem><Link to="/" style={{ color: 'white' }}>Početna</Link></MenuItem>
+            <MenuItem><Link to="/products" style={{ color: 'white' }}>Proizvodi</Link></MenuItem>
             <MenuItem>Kontakt</MenuItem>
             <MenuItem><Link to="/cart" style={{ color: 'white' }}>🛒</Link></MenuItem>
+            <MenuItem><Link to="/login" style={{ color: 'white' }}>Prijava</Link></MenuItem>
         </Menu>
     </Nav>
     )
