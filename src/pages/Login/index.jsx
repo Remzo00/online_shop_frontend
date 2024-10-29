@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LoginContainer, Form, Label, Input, Button } from "./index.styled";
+import { LoginContainer, Form, Label, Input, Button, Title } from "./index.styled";
 export default function Login() {
     const [form, setForm] = useState({ email: '', password: '' });
 
@@ -15,8 +15,8 @@ export default function Login() {
 
     return(
         <LoginContainer>
-      <h1>Prijava</h1>
       <Form onSubmit={handleSubmit}>
+        <Title>Prijava</Title>
         <div>
           <Label>Email:</Label>
           <Input type="email" name="email" value={form.email} onChange={handleChange} required />
@@ -30,4 +30,6 @@ export default function Login() {
       </Form>
     </LoginContainer>
     )
+    //
+
 }
