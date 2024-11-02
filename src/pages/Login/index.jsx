@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import { LoginContainer, Form, Label, Input, Button, Title } from "./index.styled";
+import { LoginContainer, Form, Label, Input, Button, Title, InputContainer, Text, Link } from "./index.styled";
 import { AppContext } from '../../context/AppContext';
 import { useNavigate } from "react-router-dom";
 
@@ -29,16 +29,16 @@ export default function Login() {
         <LoginContainer>
             <Form onSubmit={handleSubmit}>
                 <Title>Prijava</Title>
-                <div>
+                <InputContainer>
                     <Label>Email:</Label>
                     <Input type="email" name="email" value={form.email} onChange={handleChange} required />
-                </div>
-                <div>
+                </InputContainer>
+                <InputContainer>
                     <Label>Lozinka:</Label>
                     <Input type="password" name="password" value={form.password} onChange={handleChange} required />
-                </div>
+                </InputContainer>
                 <Button type="submit">Prijavi se</Button>
-                <p>Nemate nalog? <a href="/register">Registrujte se</a></p>
+                <Text>Nemate nalog? <Link href="/register">Registrujte se</Link></Text>
             </Form>
         </LoginContainer>
     );

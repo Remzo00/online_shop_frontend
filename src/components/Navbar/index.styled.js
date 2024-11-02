@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Nav = styled.nav`
   background-color: #333;
@@ -21,4 +22,26 @@ export const Menu = styled.ul`
 
 export const MenuItem = styled.li`
   cursor: pointer;
+`;
+
+export const StyledLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+
+  &:hover {
+    color: #ddd;
+  }
+`;
+
+export const LogoutButton = styled.button`
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+
+  &:hover {
+    color: #ddd;
+  }
 `;

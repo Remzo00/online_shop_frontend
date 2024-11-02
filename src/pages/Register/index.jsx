@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { RegisterContainer, Form, Label, Input, Button, Title } from './index.styled';
+import { RegisterContainer, Form, Label, Input, Button, Title, InputContainer, Text, Link } from './index.styled';
 import { AppContext } from '../../context/AppContext';
 
 export default function Register() {
@@ -20,19 +20,20 @@ export default function Register() {
         <RegisterContainer>
             <Form onSubmit={handleSubmit}>
                 <Title>Registracija</Title>
-                <div>
+                <InputContainer>
                     <Label>Korisničko ime:</Label>
                     <Input type="text" name="name" value={form.name} onChange={handleChange} required />
-                </div>
-                <div>
+                </InputContainer>
+                <InputContainer>
                     <Label>Email:</Label>
                     <Input type="email" name="email" value={form.email} onChange={handleChange} required />
-                </div>
-                <div>
+                </InputContainer>
+                <InputContainer>
                     <Label>Lozinka:</Label>
                     <Input type="password" name="password" value={form.password} onChange={handleChange} required />
-                </div>
+                </InputContainer>
                 <Button type="submit">Registruj se</Button>
+                <Text>Vec imas nalog? <Link href="/login">Uloguj se</Link></Text>
             </Form>
         </RegisterContainer>
     );

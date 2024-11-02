@@ -22,6 +22,15 @@ export const Form = styled.form`
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 `;
 
+export const InputContainer = styled.div``;
+
+export const Text = styled.p``;
+
+export const Link = styled.a`
+  text-decoration: none;
+  color: #007bff;
+`;
+
 export const Title = styled.h1`
   font-size: 1.8rem;
   color: #333;

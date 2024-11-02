@@ -1,6 +1,4 @@
-// Navbar.jsx
-import { Logo, Menu, MenuItem, Nav } from './index.styled';
-import { Link } from 'react-router-dom';
+import { Logo, Menu, MenuItem, Nav, StyledLink, LogoutButton } from './index.styled';
 import { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
@@ -18,20 +16,24 @@ export function Navbar() {
         <Nav>
             <Logo>Online Shop</Logo>
             <Menu>
-                <MenuItem><Link to="/" style={{ color: 'white' }}>Početna</Link></MenuItem>
-                <MenuItem><Link to="/products" style={{ color: 'white' }}>Proizvodi</Link></MenuItem>
-                <MenuItem><Link to="/cart" style={{ color: 'white' }}>🛒</Link></MenuItem>
+                <MenuItem>
+                    <StyledLink to="/">Početna</StyledLink>
+                </MenuItem>
+                <MenuItem>
+                    <StyledLink to="/products">Proizvodi</StyledLink>
+                </MenuItem>
+                <MenuItem>
+                    <StyledLink to="/cart">🛒</StyledLink>
+                </MenuItem>
 
                 {isAuthenticated ? (
-                    <>
-                        <MenuItem>
-                            <button onClick={handleLogout} style={{ color: 'white', background: 'none', border: 'none', cursor: 'pointer' }}>
-                                Odjava
-                            </button>
-                        </MenuItem>
-                    </>
+                    <MenuItem>
+                        <LogoutButton onClick={handleLogout}>Odjava</LogoutButton>
+                    </MenuItem>
                 ) : (
-                    <MenuItem><Link to="/login" style={{ color: 'white' }}>Prijava</Link></MenuItem>
+                    <MenuItem>
+                        <StyledLink to="/login">Prijava</StyledLink>
+                    </MenuItem>
                 )}
             </Menu>
         </Nav>
