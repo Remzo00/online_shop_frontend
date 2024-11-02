@@ -25,6 +25,9 @@ export function Navbar() {
                 <MenuItem>
                     <StyledLink to="/cart">🛒</StyledLink>
                 </MenuItem>
+                <MenuItem>
+                    <StyledLink to="/profile">Profil</StyledLink>
+                </MenuItem>
 
                 {isAuthenticated ? (
                     <MenuItem>
