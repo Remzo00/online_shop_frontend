@@ -24,6 +24,11 @@ export const Price = styled.p`
   color: #555;
 `;
 
+export const Name = styled.h3`
+  font-size: 1rem;
+  color: #555;
+`;
+
 export const Button = styled.button`
   background-color: #007bff;
   color: #fff;
