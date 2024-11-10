@@ -29,7 +29,7 @@ export function Products() {
   const handleSearch = async () => {
     setLoading(true);
     try {
-      const data = await searchProducts(searchTerm); // Koristi funkciju za pretragu
+      const data = await searchProducts(searchTerm); 
       setProducts(data.products);
     } catch (error) {
       setError(error.message);
