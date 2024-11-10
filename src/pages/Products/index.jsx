@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { ProductGrid } from "../../components/ProductGrid"
-import axios from "axios";
 import { getProducts, searchProducts } from "../../services/products";
-
+import { Container, SearchContainer } from "./index.styled";
+import Input from "../../components/Input";
 export function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -42,16 +42,18 @@ export function Products() {
   if (error) return <div>Error: {error}</div>;
   
    return (
-    <div>
-      <h1>Proizvodi</h1>
-       <input
+    <Container>
+      <SearchContainer>
+        <Input placeholder="Pretraži proizvode" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+      {/* <input
         type="text"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Pretraži proizvode"
-      />
+      /> */}
       <button onClick={handleSearch}>Pretraži</button>
+      </SearchContainer>
       <ProductGrid products={products} />
-    </div>
+    </Container>
   );
 }
