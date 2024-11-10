@@ -2,13 +2,17 @@
 import { useState, useEffect } from "react";
 import { ProductGrid } from "../../components/ProductGrid"
 import { getProducts, searchProducts } from "../../services/products";
-import { Container, SearchContainer } from "./index.styled";
+import { ChipContainer, Container, SearchContainer } from "./index.styled";
 import Input from "../../components/Input";
+import Chip from "../../components/Chip";
 export function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const categories = ["elektronika", "bizuterija", "odeca"];
 
 
   useEffect(() => {
@@ -38,6 +42,10 @@ export function Products() {
     }
   };
 
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
   
@@ -45,14 +53,11 @@ export function Products() {
     <Container>
       <SearchContainer>
         <Input placeholder="Pretraži proizvode" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-      {/* <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Pretraži proizvode"
-      /> */}
       <button onClick={handleSearch}>Pretraži</button>
       </SearchContainer>
+      <ChipContainer>
+        <Chip categories={categories} selectedCategory={selectedCategory} onSelectCategory={handleCategorySelect} />
+      </ChipContainer>
       <ProductGrid products={products} />
     </Container>
   );

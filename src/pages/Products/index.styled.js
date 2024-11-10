@@ -7,3 +7,9 @@ export const SearchContainer = styled.div`
   justify-content: center;
   margin-top: 2rem;
 `;
+
+export const ChipContainer = styled.div`
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+`;
