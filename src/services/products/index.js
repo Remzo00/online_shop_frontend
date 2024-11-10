@@ -9,3 +9,15 @@ export const getProducts = async () => {
     throw error;
   }
 };
+
+export const searchProducts = async (name) => {
+  try {
+    const response = await axios.get(`${API_URL}/search`, {
+      params: { name },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error searching products: ", error);
+    throw error;
+  }
+};
