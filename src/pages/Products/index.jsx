@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { ProductGrid } from "../../components/ProductGrid"
-import { getProducts, searchProducts } from "../../services/products";
+import { getProductByCategory, getProducts, searchProducts } from "../../services/products";
 import { ChipContainer, Container, SearchContainer } from "./index.styled";
 import Input from "../../components/Input";
 import Chip from "../../components/Chip";
@@ -12,23 +12,29 @@ export function Products() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
 
-  const categories = ["elektronika", "bizuterija", "odeca"];
-
+  const categories = ["Elektronika", "Nakit"];
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const data = await getProducts()
-        setProducts(data.products); 
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchProducts();
   }, []);
+
+  const fetchProducts = async (category = null) => {
+    setLoading(true);
+    try {
+      let data;
+      if (category) {
+        data = await getProductByCategory(category);
+      } else {
+        data = await getProducts();
+      }
+      setProducts(data.products);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSearch = async () => {
     setLoading(true);
@@ -45,6 +51,7 @@ export function Products() {
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
   };
+
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
