@@ -1,14 +1,13 @@
+import { useContext } from "react";
 import { Cart } from "../../components/Cart";
+import { AppContext } from "../../context/AppContext";
 export function CartPage(){
-    const cartItems = [
-        { id: 1, title: 'Majica', price: 1200 },
-        { id: 2, title: 'Patike', price: 5000 },
-      ];
+  const { cart } = useContext(AppContext)
     
       return (
         <div>
           <h1>Vaša korpa</h1>
-          <Cart cartItems={cartItems} />
+          <Cart cartItems={cart} />
         </div>
       );
 }

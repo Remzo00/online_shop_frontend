@@ -1,16 +1,18 @@
 /* eslint-disable no-unused-vars */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { ProductGrid } from "../../components/ProductGrid"
-import { getProductByCategory, getProducts, searchProducts } from "../../services/products";
+import { getProducts, searchProducts } from "../../services/products";
 import { ChipContainer, Container, SearchContainer } from "./index.styled";
 import Input from "../../components/Input";
 import Chip from "../../components/Chip";
+import { AppContext } from "../../context/AppContext";
 export function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const {addToCart} = useContext(AppContext)
 
   const categories = ["Elektronika", "Nakit"];
 
@@ -18,15 +20,10 @@ export function Products() {
     fetchProducts();
   }, []);
 
-  const fetchProducts = async (category = null) => {
+  const fetchProducts = async () => {
     setLoading(true);
     try {
-      let data;
-      if (category) {
-        data = await getProductByCategory(category);
-      } else {
-        data = await getProducts();
-      }
+      const data = await getProducts();
       setProducts(data.products);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -34,6 +31,10 @@ export function Products() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
   };
 
   const handleSearch = async () => {
@@ -65,7 +66,7 @@ export function Products() {
       <ChipContainer>
         <Chip categories={categories} selectedCategory={selectedCategory} onSelectCategory={handleCategorySelect} />
       </ChipContainer>
-      <ProductGrid products={products} />
+      <ProductGrid products={products} onAddToCart={handleAddToCart} />
     </Container>
   );
 }
