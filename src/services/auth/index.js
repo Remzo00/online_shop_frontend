@@ -20,3 +20,45 @@ export const login = async (credentials) => {
     throw error;
   }
 };
+
+export const getUser = async (userId, token) => {
+  try {
+    const response = await axios.get(`${API_URL}/user/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching user data: ", error);
+    throw error;
+  }
+};
+
+export const updateUser = async (userId, token, userData) => {
+  try {
+    const response = await axios.put(`${API_URL}/user/${userId}`, userData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error updating user: ", error);
+    throw error;
+  }
+};
+
+export const deleteUser = async (userId, token) => {
+  try {
+    const response = await axios.delete(`${API_URL}/user/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting user: ", error);
+    throw error;
+  }
+};

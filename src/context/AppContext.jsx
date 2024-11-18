@@ -14,7 +14,7 @@ export const AppProvider = ({ children }) => {
         const data = await login(credentials);
         setUser(data.user);
         setIsAuthenticated(true);
-        localStorage.setItem('token', data.token);
+        localStorage.setItem('token', data.token.token);
         localStorage.setItem('userId', data.token.user._id);
       } catch (error) {
         console.error("Login failed", error);
@@ -25,8 +25,8 @@ export const AppProvider = ({ children }) => {
           const data = await register(credentials);
           setUser(data.user);
           setIsAuthenticated(true);
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('userId', data.user._id);
+          localStorage.setItem('token', data.token.token);
+          localStorage.setItem('userId', data.token.user._id);
         } catch (error) {
           console.error("Registration failed", error);
         }
@@ -58,7 +58,7 @@ const updateQuantity = (productId, quantity) => {
         setUser(null);
         setIsAuthenticated(false);
         localStorage.removeItem('token');
-    };
+        localStorage.removeItem('userId');    };
 
     useEffect(() => {
         const token = localStorage.getItem('token');
