@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { LoginContainer, Form, Label, Input, Button, Title, InputContainer, Text, Link } from "./index.styled";
 import { AppContext } from '../../context/AppContext';
 import { useNavigate } from "react-router-dom";
+import $ from 'jquery';
 
 export default function Login() {
     const { loginUser, isAuthenticated } = useContext(AppContext);
@@ -23,6 +24,18 @@ export default function Login() {
       if (isAuthenticated) {
           navigate("/");
       }
+
+      $("button").hover(
+        function () {
+            $(this).animate({ backgroundColor: "#0056b3", transform: "scale(1.1)" }, 300);
+        },
+        function () {
+            $(this).animate({ backgroundColor: "#007bff", transform: "scale(1.0)" }, 300);
+        }
+    );
+
+    $(".form").hide().fadeIn(1000);
+    
   }, [isAuthenticated, navigate]);
 
     return(

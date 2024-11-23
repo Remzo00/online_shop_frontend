@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { RegisterContainer, Form, Label, Input, Button, Title, InputContainer, Text, Link } from './index.styled';
 import { AppContext } from '../../context/AppContext';
+import $ from 'jquery';
 
 export default function Register() {
     const { registerUser } = useContext(AppContext);
@@ -15,6 +16,17 @@ export default function Register() {
         e.preventDefault();
         await registerUser(form); 
     };
+
+    $("button").hover(
+        function () {
+            $(this).animate({ backgroundColor: "#0056b3", transform: "scale(1.1)" }, 300);
+        },
+        function () {
+            $(this).animate({ backgroundColor: "#007bff", transform: "scale(1.0)" }, 300);
+        }
+    );
+
+    $(".form").hide().fadeIn(1000);
 
     return (
         <RegisterContainer>
