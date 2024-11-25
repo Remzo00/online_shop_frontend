@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import backgroundImage from "../../assets/shop-background.jpg";
 
 export const HeroContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url("https://via.placeholder.com/1500");
+  background-image: url(${backgroundImage});
   background-size: cover;
   background-position: center;
   color: white;

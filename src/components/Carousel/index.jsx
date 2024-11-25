@@ -1,11 +1,13 @@
 import{ useState, useEffect } from 'react';
 import { CarouselContainer, CarouselWrapper, Slide, CarouselButton } from './index.styled';
-
+import slika1 from '../../assets/tech.webp'
+import slika2 from '../../assets/ring.webp'
+import slika3 from '../../assets/decor.avif'
 
 const carouselImages = [
-    'https://via.placeholder.com/1200x400?text=Slika+1',
-    'https://via.placeholder.com/1200x400?text=Slika+2',
-    'https://via.placeholder.com/1200x400?text=Slika+3',
+    slika1,
+    slika2,
+    slika3,
   ];
 export default function Carousel(){
     const [currentSlide, setCurrentSlide] = useState(0);
