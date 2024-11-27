@@ -11,7 +11,7 @@ export function ProductCard({ product }) {
             _id: product._id,
             name: product.name,
             price: parseFloat(product.price),
-            image: product.image,
+            image: product.imageUrl,
             description: product.description
         };
         
@@ -21,7 +21,7 @@ export function ProductCard({ product }) {
     return(
         <Card>
             <Name>{product.name}</Name>
-            <Image src={product.image} />
+            <Image src={product.imageUrl} />
             <Title>{product.title}</Title>
             <Price>{parseFloat(product.price).toFixed(2)} RSD</Price>
             <Button onClick={handleAddToCart}>Dodaj u korpu</Button>

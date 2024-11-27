@@ -6,7 +6,6 @@ export function CartPage(){
     
       return (
         <div>
-          <h1>Vaša korpa</h1>
           <Cart cartItems={cart} />
         </div>
       );

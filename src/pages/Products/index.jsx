@@ -2,19 +2,17 @@
 import { useState, useEffect, useContext } from "react";
 import { ProductGrid } from "../../components/ProductGrid"
 import { getProducts, searchProducts } from "../../services/products";
-import { ChipContainer, Container, SearchContainer } from "./index.styled";
+import { Container, SearchContainer } from "./index.styled";
 import Input from "../../components/Input";
-import Chip from "../../components/Chip";
 import { AppContext } from "../../context/AppContext";
+import $ from "jquery";
+
 export function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(null);
   const {addToCart} = useContext(AppContext)
-
-  const categories = ["Elektronika", "Nakit"];
 
   useEffect(() => {
     fetchProducts();
@@ -25,6 +23,7 @@ export function Products() {
     try {
       const data = await getProducts();
       setProducts(data.products);
+      highlightUpdate()
     } catch (error) {
       console.error("Error fetching products:", error);
       setError(error.message);
@@ -49,8 +48,8 @@ export function Products() {
     }
   };
 
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
+  const highlightUpdate = () => {
+    $(".product-grid").fadeOut(100).fadeIn(500);
   };
 
 
@@ -63,9 +62,6 @@ export function Products() {
         <Input placeholder="Pretraži proizvode" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
       <button onClick={handleSearch}>Pretraži</button>
       </SearchContainer>
-      <ChipContainer>
-        <Chip categories={categories} selectedCategory={selectedCategory} onSelectCategory={handleCategorySelect} />
-      </ChipContainer>
       <ProductGrid products={products} onAddToCart={handleAddToCart} />
     </Container>
   );
