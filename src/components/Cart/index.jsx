@@ -48,7 +48,6 @@ export function Cart({ cartItems }){
     return (
         <CartContainer>
             <Title>Vaša korpa</Title>
-            
             <CartGrid>
                 {cart.map(item => (
                     <CartItemCard key={item._id}>
@@ -108,7 +107,7 @@ export function Cart({ cartItems }){
                     <SummaryValue className="total">{totalPrice.toFixed(2)} RSD</SummaryValue>
                 </SummaryRow>
                 <CheckoutButton onClick={async () => {
-  try {
+    try {
     await addOrderToCart(cart);
     alert("Porudžbina je uspešno dodata!");
   } catch (error) {
