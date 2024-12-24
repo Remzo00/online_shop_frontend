@@ -20,17 +20,26 @@ export const AppProvider = ({ children }) => {
         console.error("Login failed", error);
       }
   };
-    const registerUser = async (credentials) => {
-        try {
-          const data = await register(credentials);
-          setUser(data.user);
-          setIsAuthenticated(true);
-          localStorage.setItem('token', data.token.token);
-          localStorage.setItem('userId', data.token.user._id);
-        } catch (error) {
-          console.error("Registration failed", error);
+  const registerUser = async (credentials) => {
+    try {
+        const data = await register(credentials);
+
+        if (data && data._id) {
+            setUser(data);
+            setIsAuthenticated(true);
+
+            console.log("Registration successful");
+            alert("Registration successful!");
+        } else {
+            console.error("Invalid response format:", data);
+            alert("Registration failed due to unexpected response.");
         }
-    };
+    } catch (error) {
+        console.error("Registration failed", error);
+        alert("An error occurred during registration. Please try again.");
+    }
+};
+
 
     const addToCart = async (product) => {
       setCart(prevCart => {
