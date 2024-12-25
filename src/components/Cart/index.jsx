@@ -28,7 +28,7 @@ import { AppContext } from "../../context/AppContext";
 import { addOrderToCart } from "../../services/cart";
 
 export function Cart({ cartItems }){
-    const { removeFromCart, cart, updateQuantity } = useContext(AppContext)
+    const { removeFromCart, cart, updateQuantity, clearCart } = useContext(AppContext)
 
     const totalPrice = cart.reduce((total, item) => {
         const itemPrice = parseFloat(item.price) || 0;
@@ -106,14 +106,15 @@ export function Cart({ cartItems }){
                     <SummaryLabel>Ukupno za plaćanje:</SummaryLabel>
                     <SummaryValue className="total">{totalPrice.toFixed(2)} RSD</SummaryValue>
                 </SummaryRow>
-                <CheckoutButton onClick={async () => {
-    try {
-    await addOrderToCart(cart);
-    alert("Porudžbina je uspešno dodata!");
-  } catch (error) {
-    alert("Došlo je do greške prilikom dodavanja porudžbine");
-  }
-}}>
+                <CheckoutButton   onClick={async () => {
+        try {
+            await addOrderToCart(cart);
+            alert("Porudžbina je uspešno dodata!");
+            clearCart(); // Isprazni korpu
+        } catch (error) {
+            alert("Došlo je do greške prilikom dodavanja porudžbine");
+        }
+    }}>
   Nastavi ka plaćanju
 </CheckoutButton>
             </SummaryCard>

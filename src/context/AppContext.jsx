@@ -82,8 +82,12 @@ const updateQuantity = (productId, quantity) => {
         setCart(storedCart);
     }, []);
 
+    const clearCart = () => {
+        setCart([]);
+    };
+
     return(
-        <AppContext.Provider value={{user, isAuthenticated, loginUser, registerUser, logout, cart, addToCart, removeFromCart, updateQuantity}}>
+        <AppContext.Provider value={{user, isAuthenticated, loginUser, registerUser, logout, cart, addToCart, removeFromCart, updateQuantity, clearCart}}>
             {children}
         </AppContext.Provider>
     )
